@@ -1,4 +1,4 @@
-package com.zaawansowana-java.app;
+package com.zaawansowana;
 
 /**
  * Hello world!

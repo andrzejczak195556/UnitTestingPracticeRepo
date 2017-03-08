@@ -1,4 +1,4 @@
-package com.zaawansowana-java.app;
+package com.zaawansowana;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
