@@ -11,6 +11,9 @@ package com.zaawansowana;
  */
 public interface ShoppingCart {
 
-    public int productCount();
-    
+    int productCount();
+
+    void add(Product product);
+
+    void removeProduct(int validProductId) throws ShoppingCartEmptyException, ProductNotFoundException;
 }
