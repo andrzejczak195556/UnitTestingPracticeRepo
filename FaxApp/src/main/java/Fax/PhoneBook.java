@@ -10,7 +10,7 @@ package Fax;
  * @author miszel
  */
 public interface PhoneBook {
-    String getPhoneNumber(String contactName);
+    String getPhoneNumber(String contactName) throws ContactNotFoundException;
     void addNewContact(String contactName, String phoneNemuber) throws InValidNumberFormatException;
     
 }
