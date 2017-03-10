@@ -10,12 +10,16 @@ import java.util.Observable;
 public class FaxSenderImpl extends Observable implements FaxSender {
     private PhoneBook phoneBook;
 
+
     public FaxSenderImpl(PhoneBook phoneBook) {
         this.phoneBook = phoneBook;
     }
 
     public void sendFax(String faxContents, String addresseeContactName) throws ContactNotFoundException {
-            phoneBook.getPhoneNumber(addresseeContactName);
+
+        Message<String> textMessage = new TextMessage(phoneBook.getPhoneNumber(addresseeContactName), faxContents);
+        setChanged();
+        notifyObservers(textMessage);
     }
 
 }

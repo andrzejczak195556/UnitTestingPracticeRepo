@@ -22,7 +22,7 @@ public class PhoneBookFromTextFiles implements PhoneBook {
     public String getPhoneNumber(String contactName) throws ContactNotFoundException {
         String number;
         try {
-            number = fileWriter.readFile(contactName);
+            number = fileWriter.readFile(contactName+".txt");
         } catch (IOException e) {
             throw new ContactNotFoundException("Contact wasn't found");
         }
