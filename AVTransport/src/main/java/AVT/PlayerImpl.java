@@ -23,11 +23,27 @@ public class PlayerImpl implements Player {
         return tape!=null;
     }
 
-    public void fastForward(float howMuchForward) {
+    public void fastForward(float howMuchForward) throws NoTapeException, EndOfTapeException, BeginningOfTapeException {
+
         this.tape.setPosition(howMuchForward);
+        checkForBeginningOfTapeorEndOfTape();
     }
 
-    public void revindTape(float howMuchBackwards) {
+    public void revindTape(float howMuchBackwards) throws NoTapeException, EndOfTapeException, BeginningOfTapeException {
+
         this.tape.setPosition(-howMuchBackwards);
+        checkForBeginningOfTapeorEndOfTape();
+    }
+    private void checkForBeginningOfTapeorEndOfTape() throws NoTapeException, BeginningOfTapeException, EndOfTapeException {
+        if(getCurrentTapePosition() < 0)
+        {
+            tape.setPosition(0.0f);
+            throw new BeginningOfTapeException();
+        }
+        else if(getCurrentTapePosition() > 1f)
+        {
+            tape.setPosition(1.0f);
+            throw new EndOfTapeException();
+        }
     }
 }

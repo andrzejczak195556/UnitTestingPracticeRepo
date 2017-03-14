@@ -10,7 +10,7 @@ public interface Player {
 
     boolean isTapeInside();
 
-    void fastForward(float howMuchForward);
+    void fastForward(float howMuchForward) throws NoTapeException, EndOfTapeException, BeginningOfTapeException;
 
-    void revindTape(float howMuchBackwards);
+    void revindTape(float howMuchBackwards) throws NoTapeException, EndOfTapeException, BeginningOfTapeException;
 }

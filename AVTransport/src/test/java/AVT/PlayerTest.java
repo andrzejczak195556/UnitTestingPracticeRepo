@@ -46,7 +46,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void fastForwardTapeForm_0_to_0point5() throws NoTapeException {
+    public void fastForwardTapeForm_0_to_0point5() throws NoTapeException, EndOfTapeException, BeginningOfTapeException {
 
         player.insertNewTape(new Tape());
 
@@ -57,7 +57,7 @@ public class PlayerTest {
     }
 
     @Test
-    public void revindTapeToTheBegining() {
+    public void revindTapeToTheBegining() throws NoTapeException, EndOfTapeException, BeginningOfTapeException {
         player.insertNewTape(tape);
 
         player.fastForward(0.5f);
@@ -65,8 +65,22 @@ public class PlayerTest {
 
         verify(tape).setPosition(0.5f);
         verify(tape).setPosition(-0.5f);
+    }
+
+    @Test(expected = EndOfTapeException.class)
+    public void whenPlayerTriesToGoBeyondEndOfTape_ThrowException() throws NoTapeException, EndOfTapeException, BeginningOfTapeException {
+        player.insertNewTape(new Tape());
+
+        player.fastForward(10f);
 
     }
 
+    @Test(expected = BeginningOfTapeException.class)
+    public void whenPlayerTriesToGoBeyondBeginningOfTape_ThrowException() throws NoTapeException, EndOfTapeException, BeginningOfTapeException {
+        player.insertNewTape(new Tape());
+
+        player.fastForward(-10f);
+
+    }
 
 }
